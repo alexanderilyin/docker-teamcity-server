@@ -7,7 +7,7 @@ server:
   links:
    - mysql
 mysql:
-  image: alexanderilyin/mysql
+  image: alexanderilyin/docker-mysql
   volumes:
     - .MySQL:/var/lib/mysql
   environment:
