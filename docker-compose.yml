@@ -27,13 +27,13 @@ agenttwo:
   privileged: true
   image: alexanderilyin/docker-teamcity-agent
   volumes:
-    - .TeamCity/.buildAgent/1/buildAgent.properties:/opt/buildAgent/conf/buildAgent.properties
+    - .TeamCity/.buildAgent/2/buildAgent.properties:/opt/buildAgent/conf/buildAgent.properties
   links:
    - server
 agentthree:
   privileged: true
   image: alexanderilyin/docker-teamcity-agent
   volumes:
-    - .TeamCity/.buildAgent/1/buildAgent.properties:/opt/buildAgent/conf/buildAgent.properties
+    - .TeamCity/.buildAgent/3/buildAgent.properties:/opt/buildAgent/conf/buildAgent.properties
   links:
    - server

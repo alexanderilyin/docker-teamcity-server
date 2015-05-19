@@ -20,6 +20,11 @@ Will start TeamCity Server, MySQL and 3 Teamcity Agents
     docker-compose up
     
 Please note that `docker-compose scale ...` temporary not supported.
+
+TODO
+====
+
+1. HTTPS
     
 SALT
 ====
