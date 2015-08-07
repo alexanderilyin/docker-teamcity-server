@@ -1,8 +1,8 @@
 server:
   mem_limit: 4g
   image: alexanderilyin/docker-teamcity-server
-  ports:
-   - "8111:8111"
+  expose:
+   - "8111"
   volumes:
     - .TeamCity:/root/.BuildServer
   links:
@@ -16,24 +16,19 @@ mysql:
     MYSQL_USER: teamcity
     MYSQL_PASSWORD: teamcity
     MYSQL_ALLOW_EMPTY_PASSWORD: yes
-agentone:
+agent:
   privileged: true
   image: alexanderilyin/docker-teamcity-agent
-  volumes:
-    - .TeamCity/.buildAgent/1/buildAgent.properties:/opt/buildAgent/conf/buildAgent.properties
+  command: -u 'http://server:8111/'
   links:
    - server
-agenttwo:
-  privileged: true
-  image: alexanderilyin/docker-teamcity-agent
-  volumes:
-    - .TeamCity/.buildAgent/2/buildAgent.properties:/opt/buildAgent/conf/buildAgent.properties
+nginx:
+  image: quay.io/aptible/nginx
+  environment:
+    - UPSTREAM_SERVERS=server:8111
+    - FORCE_SSL=true
   links:
-   - server
-agentthree:
-  privileged: true
-  image: alexanderilyin/docker-teamcity-agent
-  volumes:
-    - .TeamCity/.buildAgent/3/buildAgent.properties:/opt/buildAgent/conf/buildAgent.properties
-  links:
-   - server
+    - server
+  ports:
+    - 443:443
+    - 80:80
