@@ -1,8 +1,8 @@
 server:
   mem_limit: 4g
   image: alexanderilyin/docker-teamcity-server
-  ports:
-   - "8111:8111"
+  expose:
+   - "8111"
   volumes:
     - .TeamCity:/root/.BuildServer
   links:
@@ -37,3 +37,13 @@ agentthree:
     - .TeamCity/.buildAgent/3/buildAgent.properties:/opt/buildAgent/conf/buildAgent.properties
   links:
    - server
+nginx:
+  image: quay.io/aptible/nginx
+  environment:
+    - UPSTREAM_SERVERS=server:8111
+    - FORCE_SSL=true
+  links:
+    - server
+  ports:
+    - 443:443
+    - 80:80
