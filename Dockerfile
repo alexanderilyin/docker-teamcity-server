@@ -4,7 +4,7 @@ MAINTAINER Alexander Ilyin <alexander@ilyin.eu>
 
 # TEAMCITY INTERNAL ENVIRONMENT VARIABLES
 ENV TEAMCITY_DATA_PATH /root/.BuildServer
-ENV TEAMCITY_SERVER_MEM_OPTS -Xmx750m -XX:MaxPermSize=270m
+ENV TEAMCITY_SERVER_MEM_OPTS -Xmx750m
 ENV TEAMCITY_SERVER_OPTS -Dteamcity.git.fetch.separate.process=false -Dteamcity.agent.communicationProtocols=polling
 
 # TEMPORARY ENVIRONMENT VARIABLES
